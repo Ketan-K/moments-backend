@@ -36,14 +36,14 @@ router.get('/', async (req, res) => {
 //   }
 // });
 
-// router.delete('/', async (req, res) => {
-//   try {
-//     const response = await mainController.addMoment(req.body);
-//     return res.status(200).send(sendReply(1, response.message, response.data));
-//   } catch (e) {
-//     reportError('Error in delete moment', e);
-//     return res.status(500).send(sendReply(0, e.message, e));
-//   }
-// });
+router.delete('/', async (req, res) => {
+  try {
+    const response = await mainController.deleteMoment(req.body);
+    return res.status(200).send(sendReply(1, response.message, response.data));
+  } catch (e) {
+    reportError('Error in delete moment', e);
+    return res.status(500).send(sendReply(0, e.message, e));
+  }
+});
 
 module.exports = router;

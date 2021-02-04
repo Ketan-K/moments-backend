@@ -26,14 +26,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.delete('/logout', async (req, res) => {
-  try {
-    const response = await mainController.authLogout(req.headers);
-    return res.status(200).send(sendReply(1, response.message));
-  } catch (e) {
-    reportError('Error in logout', e);
-    return res.status(500).send(sendReply(0, e.message, e));
-  }
-});
-
 module.exports = router;

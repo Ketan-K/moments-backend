@@ -36,6 +36,7 @@ const UserDataSchema = new Schema({
   {
     collection: 'UserData',
     versionKey: false,
+    timestamps: true
   });
 
 UserDataSchema.methods.hashPassword = (password) => hashSync(

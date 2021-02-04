@@ -17,7 +17,9 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const response = await mainController.authLogin(req, res);
-    return res.status(200).send(sendReply(1, response.message, response));
+    res.cookie('userToken', response.userToken);
+    res.cookie('profileID', response.profileID);
+    return res.status(200).send(sendReply(1, 'User is logged in', response));
   } catch (e) {
     reportError('Error in login', e);
     return res.status(500).send(sendReply(0, e.message, e));

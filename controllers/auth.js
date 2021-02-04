@@ -3,9 +3,9 @@ const authModel = require('../models/auth');
 const login = async (params) => {
   const { email, password } = params;
   const user = await authModel.userByEmail(email);
-  if (!user) return { message: 'Login attempt failed' };
+  if (!user) throw new Error('Login attempt failed');
   const hasPasswordMatched = user.matchPassword(password, user.password);
-  if (!hasPasswordMatched) return { message: 'Login attempt failed' };
+  if (!hasPasswordMatched) throw new Error('Login attempt failed');
   const userToken = await authModel.signJWT(user.profileID, process.env.JWT_SECRET, '24h', 'RS256');
   await authModel.updateUserToken(userToken, user.profileID);
   return {

@@ -6,10 +6,8 @@ const { jwtVerify, jwtSign } = require('../utils/index');
 const findToken = async (query) => dbModel.findOne(userTokenSchema, query);
 
 const updateUserToken = async (userToken, profileID) => {
-  const refToken = new userTokenSchema();
-  const hashedRefreshJWT = refToken.hashToken(userToken);
   await dbModel.findOneAndUpdatewithOptions(userTokenSchema, { profileID },
-    { userJWT: userToken, refreshJWT: hashedRefreshJWT }, { upsert: true });
+    { userJWT: userToken }, { upsert: true });
   return 'User token updated';
 };
 

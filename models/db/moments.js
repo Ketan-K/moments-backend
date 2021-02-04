@@ -7,7 +7,7 @@ const momentSchema = new Schema({
         index: { unique: true }
     },
     imageUrl: {
-        type: [String],
+        type: String,
     },
     comment: {
         type: String,

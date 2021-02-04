@@ -3,7 +3,7 @@ const UserSchema = require('./db/userData');
 
 const saveUserDetails = async (params) => {
   const user = new UserSchema(params);
-  user.profileID = createHash(user.hashPassword(Date.now()));
+  user.profileID = createHash(user.hashPassword(user.firstname));
   user.password = user.hashPassword(params.password);
   return user.save();
 };

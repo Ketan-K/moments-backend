@@ -1,8 +1,8 @@
 const { sign, verify, decode } = require('jsonwebtoken');
 const crypto = require('crypto');
 
-const jwtSign = async (payload, privateKey, expiresIn, algorithm) => sign(
-  { payload }, privateKey, { expiresIn, algorithm },
+const jwtSign = async (payload, privateKey, expiresIn) => sign(
+  { payload }, privateKey, { expiresIn },
 );
 
 const jwtVerify = async (userToken, publicKey, options) => new Promise((resolve, reject) => {

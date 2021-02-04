@@ -7,6 +7,7 @@ var Promise = require('bluebird');
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var momentRouter = require('./routes/moments');
+var imageRouter = require('./routes/image');
 
 var addServices = require('./controllers/init');
 
@@ -21,12 +22,14 @@ const addMiddlewares = async () => {
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
   app.use(express.static(`${__dirname}/public`));
+  app.use(express.static(`${__dirname}/uploads`));
 };
 
 const addRoutes = () => {
   app.use('/', indexRouter);
   app.use('/user', authRouter);
   app.use('/moment', momentRouter);
+  app.use('/image', imageRouter);
 
   app.use((req, res) => res.status(404).send({ error: 'Not found' }));
 

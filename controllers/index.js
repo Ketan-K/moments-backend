@@ -9,7 +9,7 @@ const registerNewUser = (params) => registerController.newUserRegistration(param
 
 const addMoment = ({ token, params }) => momentsController.addMoment({ ...getProfileIDFromToken(token), ...params });
 const getAllMoment = ({ token }) => momentsController.getAllMoment(getProfileIDFromToken(token));
-// const updateMoment =  (params) => momentsController.updateMoment(params);
+const updateMoment =  (params) => momentsController.updateMoment(params);
 const deleteMoment =  (params) => momentsController.deleteMoment(params);
 
 module.exports = {
@@ -18,6 +18,6 @@ module.exports = {
     registerNewUser,
     addMoment,
     getAllMoment,
-    // updateMoment,
+    updateMoment,
     deleteMoment
 }

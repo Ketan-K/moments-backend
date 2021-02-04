@@ -6,12 +6,14 @@ const addMoment = async (params) => {
     return momentsModel.saveMoment(newParams);
 }
 const getAllMoment = async ({ profileID }) => momentsModel.getAllMoment({ profileID });
-// const updateMoment = async ({ params }) => momentsModel.updateMoment(params);
+
+const updateMoment = async ( params ) => momentsModel.updateMoment(params);
+
 const deleteMoment = async ({ momentID }) => momentsModel.deleteMoment({ momentID });
 
 module.exports = {
     addMoment,
     getAllMoment,
-    // updateMoment,
+    updateMoment,
     deleteMoment
 }

@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
   try {
     const params = { token: res.locals.newToken }
     const response = await mainController.getAllMoment(params);
-    return res.status(200).send(sendReply(1, response.message, response.data));
+    return res.status(200).send(sendReply(1, 'Moments list', response || []));
   } catch (e) {
     reportError('Error in get moments list', e);
     return res.status(500).send(sendReply(0, e.message, e));

@@ -10,6 +10,7 @@ var momentRouter = require('./routes/moments');
 var imageRouter = require('./routes/image');
 
 var addServices = require('./controllers/init');
+var isLoggedIn = require('./middleware/isLoggedIn');
 
 dotenv.config();
 global.Promise = Promise;
@@ -28,7 +29,7 @@ const addMiddlewares = async () => {
 const addRoutes = () => {
   app.use('/', indexRouter);
   app.use('/user', authRouter);
-  app.use('/moment', momentRouter);
+  app.use('/moments', isLoggedIn, momentRouter);
   app.use('/image', imageRouter);
 
   app.use((req, res) => res.status(404).send({ error: 'Not found' }));

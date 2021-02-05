@@ -6,10 +6,9 @@ const login = async (params) => {
   if (!user) throw new Error('Login attempt failed');
   const hasPasswordMatched = user.matchPassword(password, user.password);
   if (!hasPasswordMatched) throw new Error('Login attempt failed');
-  const userToken = await authModel.signJWT(user.profileID, process.env.JWT_SECRET, '24h');
-  return {
-    message: 'User logged in', userToken, profileID: user.profileID, user
-  };
+  const authToken = await authModel.signJWT(user.profileID, process.env.JWT_SECRET, '24h');
+  const { profileID, firstname, lastname, mobile, city } = user;
+  return { authToken, profileID, firstname, lastname, email, mobile, city }
 };
 
 module.exports = {

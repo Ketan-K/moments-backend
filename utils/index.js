@@ -15,7 +15,7 @@ const jwtVerify = async (userToken, publicKey, options) => new Promise((resolve,
   });
 });
 
-const createHash = (id) => crypto.createHash('md5').update(id).digest('hex');
+const createHash = (id) => crypto.createHash('md5').update(id || crypto.randomBytes(20).toString('hex')).digest('hex');
 
 const getProfileIDFromToken = (token) => {
   const { payload } = decode(token);

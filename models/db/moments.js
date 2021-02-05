@@ -9,7 +9,7 @@ const momentSchema = new Schema({
     imageUrl: {
         type: String,
     },
-    comment: {
+    title: {
         type: String,
         index: true
     },

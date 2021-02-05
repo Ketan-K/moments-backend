@@ -1,4 +1,4 @@
-const fs = require('fs').promises ;
+const fs = require('fs').promises;
 const { Router } = require('express');
 const { sendReply, reportError } = require('../utils/response');
 const uploadFile = require('../middleware/multer');
@@ -19,12 +19,12 @@ router.post('/', uploadFile.single('file'), async (req, res) => {
     }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/:imgUrl', async (req, res) => {
     try {
-        await fs.unlink('./uploads/'+ req.body.imageUrl);
+        await fs.unlink('./uploads/' + req.params.imgUrl);
         return res.status(200).send(sendReply(1, 'Deleted'));
     } catch (e) {
-        if(e.code === 'ENOENT'){
+        if (e.code === 'ENOENT') {
             return res.status(200).send(sendReply(1, 'Already Deleted'));
         }
         reportError('Error in add new moment', e);

@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
   try {
     const params = { token: res.locals.newToken, params: req.body };
     const response = await mainController.addMoment(params);
-    return res.status(200).send(sendReply(1, response.message, response.data));
+    return res.status(200).send(sendReply(1, 'Added moment', response));
   } catch (e) {
     reportError('Error in add new moment', e);
     return res.status(500).send(sendReply(0, e.message, e));

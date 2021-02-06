@@ -36,10 +36,10 @@ router.put('/', async (req, res) => {
   }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/:momentID', async (req, res) => {
   try {
-    const response = await mainController.deleteMoment(req.body);
-    return res.status(200).send(sendReply(1, response.message, response.data));
+    const response = await mainController.deleteMoment({ momentID: req.params.momentID });
+    return res.status(200).send(sendReply(1, 'Moment deleted', response));
   } catch (e) {
     reportError('Error in delete moment', e);
     return res.status(500).send(sendReply(0, e.message, e));

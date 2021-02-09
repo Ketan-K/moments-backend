@@ -8,16 +8,16 @@ const authLogout = (params) => authController.logout(params);
 const registerNewUser = (params) => registerController.newUserRegistration(params);
 
 const addMoment = ({ token, params }) => momentsController.addMoment({ ...getProfileIDFromToken(token), ...params });
-const getAllMoment = ({ token }) => momentsController.getAllMoment(getProfileIDFromToken(token));
-const updateMoment =  (params) => momentsController.updateMoment(params);
-const deleteMoment =  (params) => momentsController.deleteMoment(params);
+const getMomentPage = ({ token, page, maxDoc }) => momentsController.getMomentPage(getProfileIDFromToken(token), page, maxDoc);
+const updateMoment = (params) => momentsController.updateMoment(params);
+const deleteMoment = (params) => momentsController.deleteMoment(params);
 
 module.exports = {
     authLogin,
     authLogout,
     registerNewUser,
     addMoment,
-    getAllMoment,
+    getMomentPage,
     updateMoment,
     deleteMoment
 }

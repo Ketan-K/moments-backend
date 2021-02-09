@@ -7,7 +7,7 @@ module.exports = {
     return data.save();
   },
   find: (Model, query) => Model.find(query),
-  findWithLimit: (Model, query, limit) => Model.find(query).limit(limit),
+  findWithOptions: (Model, query, options) => Model.find(query, null, options),
   findOne: (Model, query) => Model.findOne(query),
   findWithFilter: (Model, query, filter) => Model.find(query, filter),
   findOneWithFilter: (Model, query, filter) => Model.findOne(query, filter),

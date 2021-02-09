@@ -15,11 +15,11 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/:maxDoc/:pageNo', async (req, res) => {
   try {
-    const params = { token: res.locals.newToken }
-    const response = await mainController.getAllMoment(params);
-    return res.status(200).send(sendReply(1, 'Moments list', response || []));
+    const params = { token: res.locals.newToken, page: req.params.pageNo, maxDoc: req.params.maxDoc }
+    const response = await mainController.getMomentPage(params);
+    return res.status(200).send(sendReply(1, 'Moments list', response));
   } catch (e) {
     reportError('Error in get moments list', e);
     return res.status(500).send(sendReply(0, e.message, e));

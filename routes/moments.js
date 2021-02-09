@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 router.put('/', async (req, res) => {
   try {
     const response = await mainController.updateMoment(req.body);
-    return res.status(200).send(sendReply(1, response.message, response.data));
+    return res.status(200).send(sendReply(1, 'Moment Updated', response));
   } catch (e) {
     reportError('Error in update moment', e);
     return res.status(500).send(sendReply(0, e.message, e));
